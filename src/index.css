@@ -1,0 +1,152 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
+.stat-bar {
+  height: 25px;
+  border-radius: 30px;
+  background-image: 
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.05));
+  transition: 0.4s linear;  
+  transition-property: width, background-color;    
+}
+
+.stat-moved .stat-bar {
+  background-color: #EF476F;  
+  animation: progressAnimation 3s;
+}
+
+@keyframes progressAnimation {
+  0%   { width: 5%; background-color: #F9BCCA;}
+  100% { background-color: #EF476F; }
+}
+
+.type-icon:hover,.type-icon:active,.type-icon:focus {
+  color: #fff;
+  text-decoration: none
+}
+
+.type-icon:link:hover,.type-icon:link:active,.type-icon:link:focus {
+  opacity: .85
+}
+
+.type-normal {
+  background-color: #aa9
+}
+
+.type-fire {
+  background-color: #f42
+}
+
+.type-water {
+  background-color: #39f
+}
+
+.type-electric {
+  background-color: #fc3
+}
+
+.type-grass {
+  background-color: #7c5
+}
+
+.type-ice {
+  background-color: #6cf
+}
+
+.type-fighting {
+  background-color: #b54
+}
+
+.type-poison {
+  background-color: #a59
+}
+
+.type-ground {
+  background-color: #db5
+}
+
+.type-flying {
+  background-color: #89f
+}
+
+.type-psychic {
+  background-color: #f59
+}
+
+.type-bug {
+  background-color: #ab2
+}
+
+.type-rock {
+  background-color: #ba6
+}
+
+.type-ghost {
+  background-color: #66b
+}
+
+.type-dragon {
+  background-color: #76e
+}
+
+.type-dark {
+  background-color: #754
+}
+
+.type-steel {
+  background-color: #aab
+}
+
+.type-fairy {
+  background-color: #e9e
+}
+
+.type-curse {
+  background-color: #698
+}
+
+.circle-backdrop {
+  width: 90px;
+  height: 90px;
+  padding: 20px;
+  border-radius: 45px;
+  background-color: wheat;
+}
+
+.sprite-container {
+  height: 360px;
+  display: flex;
+  justify-content: end;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-title { 
+  width: 25%;
+  text-align:left;
+  font-weight: bold;
+}
+
+.stat {
+  margin: 5px;
+}
+
+.stat-vals {
+  font-weight: bold;
+}
