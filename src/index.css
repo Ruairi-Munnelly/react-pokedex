@@ -120,3 +120,33 @@ code {
 .type-curse {
   background-color: #698
 }
+
+.circle-backdrop {
+  width: 90px;
+  height: 90px;
+  padding: 20px;
+  border-radius: 45px;
+  background-color: wheat;
+}
+
+.sprite-container {
+  height: 360px;
+  display: flex;
+  justify-content: end;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-title { 
+  width: 25%;
+  text-align:left;
+  font-weight: bold;
+}
+
+.stat {
+  margin: 5px;
+}
+
+.stat-vals {
+  font-weight: bold;
+}

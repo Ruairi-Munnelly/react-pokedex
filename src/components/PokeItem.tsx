@@ -45,12 +45,13 @@ export default function PokeItem({ pokemon, id, active, onClick }:PokeItemType )
   };
 
   return (
-    <div className={`pokemon-item ${active ? 'active' : ''} text-left`}
+    <div className={`pokemon-item ${active ? 'active' : ''}`}
       onClick={(e) => {
         e.preventDefault();
         onClick();
         fetchPokemon();
       }}
+      style={{textAlign: 'left'}}
     >
       <div className="pokemon-item__details">
       <span className="pokemon-id m-2.5">{id < 100 ? id < 10 ? `00${id}`: `0${id}` : id}</span><span className="pokemon-name m-2.5">{pokemon.charAt(0).toUpperCase() + pokemon.slice(1)}</span>
