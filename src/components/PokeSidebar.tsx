@@ -11,31 +11,17 @@ export default function PokeSidebar({ pokedex }: { pokedex: object[] }) {
   });
 
   return (
-    <div className="pokedex__sidebar" style={{margin: 'auto',flex: '0 0 25%'}}>
-      <img
-        className="relative"
-        src="/pokemon-logo.svg"
-        alt="Pokemon Logo"
-        width={360}
-        height={74}
-      />
-      <input
-        name="filter"
-        type="checkbox"
-        value="filter"
-        onClick={() => setShowFilter(!showFilter)}
-      />
-      <label className="font-bold p-1">Show search filter</label>
+    <div className="pokedex__sidebar flex-1 m-auto basis-1/2 sm:basis-full">
       <div
-        className="pokedex-container overflow-y-scroll max-h-80 bg-yellow-300 rounded-md border-black border-2"
-        style={{ flex: "1 1 25%", margin:'0 50px' }}
+        className="pokedex-container flex-1 basis-1/4 max-h-80 max-w-sm m-auto overflow-y-scroll bg-yellow-300 
+        rounded-md border-black border-2"
       >
         {showFilter && (
-          <div className="filter-bar" style={{margin:'5px 0'}}>
+          <div className="filter-bar my-5" style={{ margin: "5px 0" }}>
             <input
               type="text"
+              className="border-solid rounded-3xl"
               placeholder="Filter dex"
-              style={{border: 'solid', borderRadius:'15px'}}
               value={filter}
               onChange={(e) => setFilter(e.target.value)}
             />
@@ -43,7 +29,9 @@ export default function PokeSidebar({ pokedex }: { pokedex: object[] }) {
         )}
         {pokedex &&
           pokedex
-            .filter((pokemon: any) => pokemon.name.includes(filter.toLowerCase()))
+            .filter((pokemon: any) =>
+              pokemon.name.includes(filter.toLowerCase())
+            )
             .map((pokemon: any, index: number) => {
               const name = pokemon.name;
 
@@ -58,6 +46,13 @@ export default function PokeSidebar({ pokedex }: { pokedex: object[] }) {
               return <PokeItem key={index} {...props} />;
             })}
       </div>
+      <input
+        name="filter"
+        type="checkbox"
+        value="filter"
+        onClick={() => setShowFilter(!showFilter)}
+      />
+      <label className="font-bold p-1">Show search filter</label>
     </div>
   );
 }
