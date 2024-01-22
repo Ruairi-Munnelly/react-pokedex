@@ -69,7 +69,7 @@ export default function PokeData() {
         </div>
       ) : (
         <>
-          <h2>Select pokemon from the dex</h2>
+          <span className="onload-text font-bold">SELECT POKEMON FROM POKEDEX LIST</span>
         </>
       )}
       {stats && (
