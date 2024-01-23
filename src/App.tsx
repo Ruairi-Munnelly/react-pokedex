@@ -36,7 +36,7 @@ function App() {
         ) : (
           <div className="pokedex">
             <PokemonContextProvider>
-              <div className="pokedex flex w-full flex-wrap">
+              <div className="pokedex__container flex w-full flex-wrap">
                 <PokeData />
                 <PokeSidebar pokedex={pokedex} />
               </div>

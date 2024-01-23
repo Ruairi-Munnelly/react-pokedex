@@ -43,7 +43,7 @@ export default function PokeData() {
   return (
     <div className="pokedex__data m-auto flex-grow-0 flex-shrink-0 basis-1/2 sm:basis-full">
       {name ? (
-        <div className="sprite-container flex flex-col justify-end items-center">
+        <div className="sprite flex flex-col justify-end items-center">
           <div className="circle-backdrop w-24 h-24 p-5 rounded-full bg-yellow-200">
             <img
               className="pokemon-sprite h-10 m-auto"
@@ -73,7 +73,7 @@ export default function PokeData() {
         </>
       )}
       {stats && (
-        <div className="pokemon-stats__grid max-w-sm  bg-blue-300 m-auto rounded-md border-black border-2">
+        <div className="pokemon-stats max-w-sm  bg-blue-300 m-auto rounded-md border-black border-2">
           {stats.map((statObj: any, i: number) => {
             const name = statObj.stat.name;
             const base_stat: number = statObj.base_stat;
