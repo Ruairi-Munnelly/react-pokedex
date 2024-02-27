@@ -21,7 +21,7 @@ export default function PokeData() {
   const StatBar = ({ name, val, maxVal }: StatBarType) => {
     let width = (val / maxVal) * 100 + 10;
     return (
-      <div className="stat stat-moved flex items-center m-1.5">
+      <div data-testid={`stat-${name}`} className="stat stat-moved flex items-center m-1.5">
         <span className="stat-title basis-1/4 items-left font-bold">
           {name.replace("ecial-", ". ").toUpperCase()}
         </span>

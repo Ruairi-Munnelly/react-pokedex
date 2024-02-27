@@ -3,7 +3,7 @@ import useSelectedPokemon from "../hooks/useSelectedPokemon";
 
 type PokemonContextType = {
   selectedPokemon: object;
-  setSelectedPokemon: React.Dispatch<React.SetStateAction<object>>
+  setSelectedPokemon: React.Dispatch<React.SetStateAction<object>> | undefined
 }
 
 const PokemonContext = createContext<undefined | PokemonContextType>(undefined);
@@ -35,5 +35,5 @@ const usePokemonContext = () => {
   return context;
 }
 
-export { PokemonContextProvider, usePokemonContext}
+export { PokemonContextProvider, usePokemonContext, PokemonContext}
 

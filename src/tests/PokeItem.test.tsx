@@ -5,7 +5,7 @@ import { PokemonContextProvider } from '../contexts/PokemonContext'
 let active = true;
 
 const handleOnClick = (active:boolean) => {
-  !active;
+  return !active;
 }
 
 let dummyProps = {
@@ -19,7 +19,8 @@ describe('PokeItem', () => {
   describe('rendering', () => {
     it('should render a single entry Pokedex check to see that props are correctly passed', () => {
       RenderPokeItem();
-      expect(screen.getByText(/Bulbasaur/i)).toBeInTheDocument;
+
+      expect(screen.getByText(/Bulbasaur/i)).toBeInTheDocument();
     });
   })
 
@@ -30,6 +31,8 @@ describe('PokeItem', () => {
     });
   })
 })
+
+
 
 function RenderPokeItem() {
   render(

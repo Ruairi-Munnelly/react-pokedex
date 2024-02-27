@@ -34,7 +34,7 @@ function App() {
             <Spinner size={240} />
           </div>
         ) : (
-          <div className="pokedex">
+          <div data-testid='pokedex' className="pokedex">
             <PokemonContextProvider>
               <div className="pokedex__container flex w-full flex-wrap">
                 <PokeData />
