@@ -30,13 +30,13 @@ function App() {
       </header>
       <main>
         {loading ? (
-          <div className="spinner-container h-screen flex justify-center items-center">
+          <div data-testid="spinner" className="spinner-container h-screen flex justify-center items-center">
             <Spinner size={240} />
           </div>
         ) : (
-          <div className="pokedex">
+          <div data-testid='pokedex' className="pokedex">
             <PokemonContextProvider>
-              <div className="pokedex flex w-full flex-wrap">
+              <div className="pokedex__container flex w-full flex-wrap">
                 <PokeData />
                 <PokeSidebar pokedex={pokedex} />
               </div>
