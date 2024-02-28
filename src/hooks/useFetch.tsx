@@ -14,7 +14,7 @@ export default function useFetch(endpoint: string) {
           setData(json);
           setTimeout(() => {
             setLoading(false);
-          }, 2000);
+          }, 1000);
         } else {
           throw error;
         }

@@ -1,12 +1,19 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
-import { wait } from '@testing-library/user-event/dist/utils';
-import App from '../App';
-/*
-test('renders a main', async () => {
-  render(<App />);
-  await wait(() => {
-    expect(screen.findByTestId('pokedex')).toBeInTheDocument();
-  });
+import React from "react";
+import { render, screen, waitFor } from "@testing-library/react";
+import App from "../App";
+
+describe("App component", () => {
+  describe('testing initial load', () => {
+    it('load page', () => {
+      render(<App />);
+      expect(screen.getByTestId('spinner')).toBeInTheDocument();
+    })
+    it('load pokedex after fetch timeout', async () => {
+      render(<App />);
+      await waitFor(() => {
+        expect(screen.getByTestId('pokedex')).toBeInTheDocument();
+      }, {timeout: 2000})
+    })
+  })
+
 });
-*/

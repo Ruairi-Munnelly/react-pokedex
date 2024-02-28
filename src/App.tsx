@@ -30,7 +30,7 @@ function App() {
       </header>
       <main>
         {loading ? (
-          <div className="spinner-container h-screen flex justify-center items-center">
+          <div data-testid="spinner" className="spinner-container h-screen flex justify-center items-center">
             <Spinner size={240} />
           </div>
         ) : (
