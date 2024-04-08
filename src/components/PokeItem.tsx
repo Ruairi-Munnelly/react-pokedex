@@ -1,25 +1,35 @@
 import { usePokemonContext } from "../contexts/PokemonContext";
+import { useDispatch } from "react-redux";
+import { updateSelectedPokemon } from "./PokedexSlice";
 
 const API_POKEMON_ENDPOINT = "https://pokeapi.co/api/v2/pokemon/";
 const ANIMATION_ENDPOINT = "https://www.smogon.com/dex/media/sprites/bw/";
 
 type PokeItemType = {
-  pokemon: string, 
-  active: boolean, 
-  id: number, 
-  onClick: Function
-}
+  pokemon: string;
+  active: boolean;
+  id: number;
+  onClick: Function;
+};
 
-export default function PokeItem({ pokemon, id, active, onClick }:PokeItemType ) {
-
+export default function PokeItem({
+  pokemon,
+  id,
+  active,
+  onClick,
+}: PokeItemType) {
   interface Pokemon {
-    [key: string]: any; 
+    [key: string]: any;
     name?: string;
   }
-
-  const { selectedPokemon, setSelectedPokemon }:{selectedPokemon: Pokemon;  setSelectedPokemon: any } = usePokemonContext()
+  const dispatch = useDispatch();
+  const {
+    selectedPokemon,
+    setSelectedPokemon,
+  }: { selectedPokemon: Pokemon; setSelectedPokemon: any } =
+    usePokemonContext();
   const name = selectedPokemon.name;
-  
+
   const fetchPokemon = async () => {
     if (pokemon === name) {
       return;
@@ -30,13 +40,24 @@ export default function PokeItem({ pokemon, id, active, onClick }:PokeItemType )
         let pokeJson = await data.json();
         const { name, id, sprites, types, stats } = pokeJson;
         let animation = `${ANIMATION_ENDPOINT}${name}.gif`;
+
+        dispatch(
+          updateSelectedPokemon({
+            name,
+            id,
+            sprite: sprites.front_default,
+            types: types,
+            stats: stats,
+            animation,
+          })
+        );
         setSelectedPokemon({
-          name: name,
+          name,
           id,
           sprite: sprites.front_default,
           types: types,
           stats: stats,
-          animation: animation,
+          animation,
         });
       }
     } catch (e) {
@@ -45,15 +66,21 @@ export default function PokeItem({ pokemon, id, active, onClick }:PokeItemType )
   };
 
   return (
-    <div className={`pokemon__item ${active ? 'active' : ''} text-left`}
+    <div
+      className={`pokemon__item ${active ? "active" : ""} text-left`}
       onClick={(e) => {
         e.preventDefault();
         onClick();
         fetchPokemon();
       }}
     >
-      <div className="pokemon__details">
-      <span className="pokemon__id m-2.5">{id < 100 ? id < 10 ? `00${id}`: `0${id}` : id}</span><span className="pokemon__name m-2.5">{pokemon.charAt(0).toUpperCase() + pokemon.slice(1)}</span>
+      <div className='pokemon__details'>
+        <span className='pokemon__id m-2.5'>
+          {id < 100 ? (id < 10 ? `00${id}` : `0${id}`) : id}
+        </span>
+        <span className='pokemon__name m-2.5'>
+          {pokemon.charAt(0).toUpperCase() + pokemon.slice(1)}
+        </span>
       </div>
     </div>
   );
