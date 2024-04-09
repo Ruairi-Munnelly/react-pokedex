@@ -3,7 +3,7 @@ import type { RootState } from "../app/store";
 
 type PokedexState = {
   data?: object;
-  status: "idle" | "loading" | "succeeded" | "failed";
+  status: string;
   error?: null | Error;
   selectedPokemon?: object;
 };

@@ -1,6 +1,5 @@
-import { usePokemonContext } from "../contexts/PokemonContext";
-import { useDispatch } from "react-redux";
-import { updateSelectedPokemon } from "./PokedexSlice";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
+import { selectedPokemon, updateSelectedPokemon } from "./PokedexSlice";
 
 const API_POKEMON_ENDPOINT = "https://pokeapi.co/api/v2/pokemon/";
 const ANIMATION_ENDPOINT = "https://www.smogon.com/dex/media/sprites/bw/";
@@ -22,13 +21,8 @@ export default function PokeItem({
     [key: string]: any;
     name?: string;
   }
-  const dispatch = useDispatch();
-  const {
-    selectedPokemon,
-    setSelectedPokemon,
-  }: { selectedPokemon: Pokemon; setSelectedPokemon: any } =
-    usePokemonContext();
-  const name = selectedPokemon.name;
+  const dispatch = useAppDispatch();
+  const { name } = useAppSelector(selectedPokemon) as Pokemon;
 
   const fetchPokemon = async () => {
     if (pokemon === name) {
@@ -51,14 +45,6 @@ export default function PokeItem({
             animation,
           })
         );
-        setSelectedPokemon({
-          name,
-          id,
-          sprite: sprites.front_default,
-          types: types,
-          stats: stats,
-          animation,
-        });
       }
     } catch (e) {
       throw e;

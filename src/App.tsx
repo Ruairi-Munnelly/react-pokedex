@@ -1,13 +1,12 @@
 import PokeData from "./components/PokeData";
 import PokeSidebar from "./components/PokeSidebar";
-import { PokemonContextProvider } from "./contexts/PokemonContext";
 import { pokedexStatus } from "./components/PokedexSlice";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "./app/hooks";
 import "./App.css";
 import Spinner from "./components/Spinner";
 
 function App() {
-  const status = useSelector(pokedexStatus);
+  const status = useAppSelector(pokedexStatus);
 
   return (
     <div className='App h-screen bg-slate-500'>
@@ -32,12 +31,10 @@ function App() {
           </div>
         ) : (
           <div data-testid='pokedex' className='pokedex'>
-            <PokemonContextProvider>
-              <div className='pokedex__container flex w-full flex-wrap'>
-                <PokeData />
-                <PokeSidebar />
-              </div>
-            </PokemonContextProvider>
+            <div className='pokedex__container flex w-full flex-wrap'>
+              <PokeData />
+              <PokeSidebar />
+            </div>
           </div>
         )}
       </main>
