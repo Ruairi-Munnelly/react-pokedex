@@ -1,10 +1,8 @@
-import { fireEvent, screen, render, waitFor } from "@testing-library/react";
+import { screen, waitFor } from "@testing-library/react";
 // Using our own custom render function and not RTL's render.
 import { renderWithProviders } from "../utils/test-utils";
 import * as pokedexMockData from "../../public/dummy-test-data.json";
 import App from "../App";
-import { useAppSelector } from "../app/hooks";
-import { pokedexData } from "../components/PokedexSlice";
 
 const initialPokedex = {
   data: pokedexMockData,

@@ -1,7 +1,7 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import type { RootState } from "../app/store";
 
-type PokedexState = {
+export type PokedexState = {
   data?: object;
   status: string;
   error?: null | Error;
