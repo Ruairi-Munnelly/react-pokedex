@@ -70,11 +70,10 @@ const pokedexSlice = createSlice({
       .addCase(
         fetchPokemon.fulfilled,
         (state, action: PayloadAction<object>) => {
+          console.log("fulfilled");
           state.status = "succeeded";
           // Add pokemon as selected to state
-
           const { name, id, types, stats } = action.payload as Pokemon;
-
           state.selectedPokemon = {
             name,
             id,

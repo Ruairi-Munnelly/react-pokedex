@@ -37,8 +37,11 @@ export default function PokeItem({
       className={`pokemon__item ${
         active && "active outline-dotted rounded-md bg-blue-300"
       } text-left`}
+      aria-label={`pokedex list item ${pokemon}`}
+      data-testid={pokemon}
       onClick={(e) => {
         e.preventDefault();
+        console.log("clicked");
         onClick();
         updatePokemonSelected();
       }}

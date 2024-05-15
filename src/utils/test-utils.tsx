@@ -2,7 +2,6 @@ import React, { PropsWithChildren } from "react";
 import { render } from "@testing-library/react";
 import type { RenderOptions } from "@testing-library/react";
 import { Provider } from "react-redux";
-
 import { setupStore } from "../app/store";
 import type { AppStore, RootState } from "../app/store";
 
@@ -27,3 +26,13 @@ export function renderWithProviders(
   }
   return { store, ...render(ui, { wrapper: Wrapper, ...renderOptions }) };
 }
+
+export const mockedResolvedResponse = (res: any) =>
+  (global.fetch = jest.fn().mockResolvedValue({
+    json: jest.fn().mockResolvedValue(res),
+  }));
+
+export const mockedUnresolvedResponse = (err: any) =>
+  (global.fetch = jest.fn().mockRejectedValue({
+    json: jest.fn().mockRejectedValue(err),
+  }));

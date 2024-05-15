@@ -1,8 +1,9 @@
-import React from "react";
-import { screen } from "@testing-library/react";
+import { screen, act } from "@testing-library/react";
 import PokeData from "../components/PokeData";
 import * as dummyPokemonData from "../../public/dummy-test-data-pokemon.json";
 import { renderWithProviders } from "../utils/test-utils";
+import { store } from "../app/store";
+import { fetchPokemon } from "../components/PokedexSlice";
 
 const initialPokedex = {
   data: {},
@@ -11,7 +12,7 @@ const initialPokedex = {
   selectedPokemon: dummyPokemonData,
 };
 
-describe("Pokedata", () => {
+describe("Rendering", () => {
   it("should render with fallback text", async () => {
     renderWithProviders(<PokeData />);
     expect(
@@ -36,5 +37,33 @@ describe("Pokedata", () => {
     statList.forEach((stat) => {
       expect(screen.getByTestId(stat)).toBeInTheDocument();
     });
+  });
+});
+
+describe("events/updates", () => {
+  it("should render and update the component if dispatch called", async () => {
+    await act(async () => {
+      await store.dispatch(fetchPokemon("bulbasaur"));
+    });
+    const { pokedex } = store.getState();
+    renderWithProviders(<PokeData />, {
+      preloadedState: {
+        pokedex: pokedex,
+      },
+    });
+
+    expect(
+      screen.queryByText(/SELECT POKEMON FROM POKEDEX LIST/i)
+    ).not.toBeInTheDocument();
+
+    // renderWithProviders(<PokeData />,
+
+    // await waitFor(
+    //   () =>
+    //     expect(
+    //       screen.queryByText(/SELECT POKEMON FROM POKEDEX LIST/i)
+    //     ).not.toBeInTheDocument(),
+    //   { timeout: 2000 }
+    // );
   });
 });
