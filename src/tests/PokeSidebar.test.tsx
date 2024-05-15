@@ -1,23 +1,25 @@
-import {render,screen} from '@testing-library/react'
-import PokeSidebar from '../components/PokeSidebar'
-import { PokemonContextProvider } from '../contexts/PokemonContext'
-import * as pokedex from '../../public/dummy-test-data.json'
+import { screen } from "@testing-library/react";
+import * as pokedex from "../../public/dummy-test-data.json";
+import PokeSidebar from "../components/PokeSidebar";
+import { renderWithProviders } from "../utils/test-utils";
 
-describe('PokeSidebar', () => {
-  describe('rendering', () => {
-    it('should render correctly when passed pokedex obj', () => {
-      let props = {
-        pokedex: pokedex.results
-      }
-      render(
-        <PokemonContextProvider>
-          <PokeSidebar {...props} />
-        </PokemonContextProvider>
-      )
+const initialPokedex = {
+  data: pokedex,
+  status: "succeeded",
+  error: null,
+  selectedPokemon: {},
+};
+
+describe("PokeSidebar", () => {
+  describe("rendering", () => {
+    it("should render correctly when passed pokedex obj", () => {
+      renderWithProviders(<PokeSidebar />, {
+        preloadedState: {
+          pokedex: initialPokedex,
+        },
+      });
       expect(screen.getByText(/Bulbasaur/i)).not.toBeNull();
       expect(screen.getByText(/Charmander/i)).not.toBeNull();
-
     });
-  })
-
-})
+  });
+});
